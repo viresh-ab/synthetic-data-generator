@@ -1,0 +1,275 @@
+{% extends "base.html" %}
+{% block content %}
+
+<div class="page-header">
+  <h1 class="page-title">Generate Synthetic Data</h1>
+  <p class="page-subtitle">Create high-quality synthetic datasets based on your configuration</p>
+</div>
+
+<div class="card">
+  <div class="card-body text-center" style="padding: 3rem;">
+    <div class="generation-icon mb-4">
+      <i class="fas fa-magic" style="font-size: 4rem; color: var(--primary);"></i>
+    </div>
+    
+    <h4 style="font-weight: 700; margin-bottom: 1rem;">Ready to Generate</h4>
+    <p style="color: var(--text-muted); margin-bottom: 2rem;">
+      Click the button below to start generating your synthetic dataset
+    </p>
+
+    <form method="post" onsubmit="showLoader()">
+      <button type="submit" class="btn btn-primary btn-lg" style="padding: 1rem 3rem; font-size: 1.1rem;">
+        <i class="fas fa-rocket"></i> Generate Dataset
+      </button>
+    </form>
+  </div>
+</div>
+
+<!-- Loader -->
+<div id="loader" class="card mt-4" style="display:none;">
+  <div class="card-body text-center" style="padding: 3rem;">
+    <div class="loader-animation mb-4">
+      <div class="spinner-container">
+        <div class="spinner-ring"></div>
+        <div class="spinner-ring"></div>
+        <div class="spinner-ring"></div>
+        <i class="fas fa-database" style="font-size: 2rem; color: var(--primary);"></i>
+      </div>
+    </div>
+    
+    <h5 style="font-weight: 700; margin-bottom: 1rem; color: var(--text);">
+      Generating Synthetic Data
+    </h5>
+    <p style="color: var(--text-muted); margin-bottom: 1.5rem;">
+      This may take a few moments. Please don't close this window.
+    </p>
+
+    <div class="generation-steps">
+      <div class="step-item">
+        <div class="step-icon">
+          <i class="fas fa-check"></i>
+        </div>
+        <span>Analyzing schema</span>
+      </div>
+      <div class="step-item">
+        <div class="step-icon">
+          <i class="fas fa-spinner fa-spin"></i>
+        </div>
+        <span>Generating records</span>
+      </div>
+      <div class="step-item">
+        <div class="step-icon">
+          <i class="fas fa-circle"></i>
+        </div>
+        <span>Applying constraints</span>
+      </div>
+      <div class="step-item">
+        <div class="step-icon">
+          <i class="fas fa-circle"></i>
+        </div>
+        <span>Finalizing dataset</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% if preview %}
+<div class="card mt-4" style="animation: fadeInUp 0.6s ease-out;">
+  <div class="card-header" style="background: var(--gradient-primary); color: white;">
+    <h5 style="margin: 0; font-weight: 700;">
+      <i class="fas fa-check-circle"></i> Generation Complete!
+    </h5>
+  </div>
+  <div class="card-body">
+    <div class="alert" style="
+      background: linear-gradient(135deg, rgba(0, 229, 160, 0.1) 0%, rgba(0, 184, 124, 0.1) 100%);
+      border-left: 4px solid var(--success);
+      border-radius: 10px;
+      padding: 1rem 1.5rem;
+      margin-bottom: 1.5rem;
+    ">
+      <i class="fas fa-info-circle" style="color: var(--success);"></i>
+      Your synthetic dataset has been generated successfully. Preview the first few rows below.
+    </div>
+
+    <h6 style="font-weight: 600; margin-bottom: 1rem;">
+      <i class="fas fa-table" style="color: var(--primary);"></i> Data Preview
+    </h6>
+    <div class="table-responsive">
+      {{ preview|safe }}
+    </div>
+
+    <div class="d-flex gap-3 mt-4">
+      <a href="/validate" class="btn btn-warning">
+        <i class="fas fa-check-double"></i> Validate Quality
+      </a>
+      <a href="/export" class="btn btn-success">
+        <i class="fas fa-download"></i> Export Dataset
+      </a>
+    </div>
+  </div>
+</div>
+{% endif %}
+
+<style>
+  .generation-icon {
+    animation: pulse 2s ease-in-out infinite;
+  }
+
+  @keyframes pulse {
+    0%, 100% {
+      transform: scale(1);
+      opacity: 1;
+    }
+    50% {
+      transform: scale(1.1);
+      opacity: 0.8;
+    }
+  }
+
+  .spinner-container {
+    position: relative;
+    width: 120px;
+    height: 120px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .spinner-ring {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border: 4px solid transparent;
+    border-top-color: var(--primary);
+    border-radius: 50%;
+    animation: spin 1.5s linear infinite;
+  }
+
+  .spinner-ring:nth-child(2) {
+    width: 80%;
+    height: 80%;
+    border-top-color: var(--secondary);
+    animation-duration: 2s;
+    animation-direction: reverse;
+  }
+
+  .spinner-ring:nth-child(3) {
+    width: 60%;
+    height: 60%;
+    border-top-color: var(--accent);
+    animation-duration: 1s;
+  }
+
+  @keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+  }
+
+  .generation-steps {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    margin-top: 2rem;
+    flex-wrap: wrap;
+  }
+
+  .step-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .step-icon {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: var(--bg);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--text-muted);
+    font-size: 1rem;
+    transition: all 0.3s ease;
+  }
+
+  .step-item:first-child .step-icon {
+    background: var(--success);
+    color: white;
+  }
+
+  .step-item:nth-child(2) .step-icon {
+    background: var(--primary);
+    color: white;
+  }
+
+  .step-item span {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    font-weight: 500;
+  }
+
+  table {
+    font-size: 0.9rem;
+  }
+
+  table thead {
+    background: var(--bg);
+    font-weight: 600;
+    color: var(--text);
+  }
+
+  table tbody tr {
+    transition: all 0.2s ease;
+  }
+
+  table tbody tr:hover {
+    background: rgba(15, 82, 186, 0.02);
+    transform: translateX(2px);
+  }
+
+  @keyframes fadeInUp {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+</style>
+
+<script>
+  function showLoader() {
+    document.getElementById("loader").style.display = "block";
+    
+    // Animate through steps
+    const steps = document.querySelectorAll('.step-item');
+    let currentStep = 1;
+    
+    const interval = setInterval(() => {
+      if (currentStep < steps.length) {
+        // Mark previous step as complete
+        const prevIcon = steps[currentStep - 1].querySelector('.step-icon');
+        prevIcon.innerHTML = '<i class="fas fa-check"></i>';
+        prevIcon.style.background = 'var(--success)';
+        prevIcon.style.color = 'white';
+        
+        // Start current step
+        const currentIcon = steps[currentStep].querySelector('.step-icon');
+        currentIcon.innerHTML = '<i class="fas fa-spinner fa-spin"></i>';
+        currentIcon.style.background = 'var(--primary)';
+        currentIcon.style.color = 'white';
+        
+        currentStep++;
+      } else {
+        clearInterval(interval);
+      }
+    }, 2000);
+  }
+</script>
+
+{% endblock %}

@@ -1,0 +1,196 @@
+{% extends "base.html" %}
+{% block content %}
+
+<div class="page-header">
+  <h1 class="page-title">Upload Reference Data</h1>
+  <p class="page-subtitle">Upload your dataset to begin generating synthetic data</p>
+</div>
+
+<div class="card">
+  <div class="card-body">
+    <form method="post" enctype="multipart/form-data" id="uploadForm">
+      <div class="upload-area" id="uploadArea">
+        <div class="upload-content">
+          <i class="fas fa-cloud-upload-alt upload-icon"></i>
+          <h4 class="upload-title">Drop your file here</h4>
+          <p class="upload-subtitle">or click to browse</p>
+          <p class="upload-info">Supported formats: CSV, Excel, JSON (Max 100MB)</p>
+          <input type="file" name="file" class="form-control d-none" id="fileInput" accept=".csv,.xlsx,.xls,.json">
+        </div>
+        <div class="upload-progress d-none" id="uploadProgress">
+          <i class="fas fa-file-alt" style="font-size: 3rem; color: var(--primary); margin-bottom: 1rem;"></i>
+          <p class="file-name" id="fileName"></p>
+          <div class="progress" style="height: 8px; border-radius: 10px; margin-top: 1rem; width: 100%;">
+            <div class="progress-bar" role="progressbar" style="width: 0%; background: var(--gradient-primary);" id="progressBar"></div>
+          </div>
+        </div>
+      </div>
+      <div class="d-flex gap-3 mt-4">
+        <button type="submit" class="btn btn-primary">
+          <i class="fas fa-upload"></i> Upload Dataset
+        </button>
+        <button type="button" class="btn btn-outline-primary" onclick="document.getElementById('fileInput').click()">
+          <i class="fas fa-folder-open"></i> Browse Files
+        </button>
+      </div>
+    </form>
+  </div>
+</div>
+
+{% if preview %}
+<div class="card mt-4">
+  <div class="card-header">
+    <h5 style="margin: 0; font-weight: 700;">
+      <i class="fas fa-table" style="color: var(--primary);"></i> Data Preview
+    </h5>
+  </div>
+  <div class="card-body">
+    <div class="table-responsive">
+      {{ preview|safe }}
+    </div>
+  </div>
+</div>
+{% endif %}
+
+<style>
+  .upload-area {
+    border: 3px dashed var(--border);
+    border-radius: 16px;
+    padding: 4rem 2rem;
+    text-align: center;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    cursor: pointer;
+    background: var(--bg);
+    position: relative;
+  }
+
+  .upload-area:hover {
+    border-color: var(--primary);
+    background: rgba(15, 82, 186, 0.02);
+    transform: scale(1.01);
+  }
+
+  .upload-area.drag-over {
+    border-color: var(--primary);
+    background: rgba(15, 82, 186, 0.05);
+    transform: scale(1.02);
+  }
+
+  .upload-icon {
+    font-size: 4rem;
+    color: var(--primary);
+    margin-bottom: 1.5rem;
+    animation: float 3s ease-in-out infinite;
+  }
+
+  .upload-title {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--text);
+    margin-bottom: 0.5rem;
+  }
+
+  .upload-subtitle {
+    font-size: 1.1rem;
+    color: var(--text-muted);
+    margin-bottom: 1rem;
+  }
+
+  .upload-info {
+    font-size: 0.9rem;
+    color: var(--text-muted);
+    padding: 0.75rem 1.5rem;
+    background: rgba(15, 82, 186, 0.05);
+    border-radius: 10px;
+    display: inline-block;
+  }
+
+  @keyframes float {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-10px); }
+  }
+
+  .file-name {
+    font-weight: 600;
+    color: var(--text);
+    margin-top: 0.5rem;
+  }
+
+  table {
+    font-size: 0.9rem;
+  }
+
+  table thead {
+    background: var(--bg);
+    font-weight: 600;
+    color: var(--text);
+  }
+
+  table tbody tr:hover {
+    background: rgba(15, 82, 186, 0.02);
+  }
+</style>
+
+<script>
+  const uploadArea = document.getElementById('uploadArea');
+  const fileInput = document.getElementById('fileInput');
+  const uploadForm = document.getElementById('uploadForm');
+  const uploadProgress = document.getElementById('uploadProgress');
+  const uploadContent = uploadArea.querySelector('.upload-content');
+
+  // Click to upload
+  uploadArea.addEventListener('click', (e) => {
+    if (e.target !== fileInput) {
+      fileInput.click();
+    }
+  });
+
+  // Drag and drop
+  uploadArea.addEventListener('dragover', (e) => {
+    e.preventDefault();
+    uploadArea.classList.add('drag-over');
+  });
+
+  uploadArea.addEventListener('dragleave', () => {
+    uploadArea.classList.remove('drag-over');
+  });
+
+  uploadArea.addEventListener('drop', (e) => {
+    e.preventDefault();
+    uploadArea.classList.remove('drag-over');
+    const files = e.dataTransfer.files;
+    if (files.length > 0) {
+      fileInput.files = files;
+      updateFileName(files[0]);
+    }
+  });
+
+  // File input change
+  fileInput.addEventListener('change', (e) => {
+    if (e.target.files.length > 0) {
+      updateFileName(e.target.files[0]);
+    }
+  });
+
+  function updateFileName(file) {
+    const fileName = document.getElementById('fileName');
+    fileName.textContent = file.name;
+    uploadContent.classList.add('d-none');
+    uploadProgress.classList.remove('d-none');
+  }
+
+  // Form submit with progress animation
+  uploadForm.addEventListener('submit', (e) => {
+    const progressBar = document.getElementById('progressBar');
+    let progress = 0;
+    const interval = setInterval(() => {
+      progress += 10;
+      progressBar.style.width = progress + '%';
+      if (progress >= 90) {
+        clearInterval(interval);
+      }
+    }, 100);
+  });
+</script>
+
+{% endblock %}

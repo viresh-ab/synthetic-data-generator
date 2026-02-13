@@ -1,0 +1,282 @@
+{% extends "base.html" %}
+{% block content %}
+
+<div class="page-header">
+  <h1 class="page-title">Configuration</h1>
+  <p class="page-subtitle">Customize your synthetic data generation settings</p>
+</div>
+
+<form method="post">
+  <div class="row g-4">
+    <!-- Generation Settings -->
+    <div class="col-lg-8">
+      <div class="card">
+        <div class="card-header">
+          <h5 style="margin: 0; font-weight: 700;">
+            <i class="fas fa-cog" style="color: var(--primary);"></i> Generation Parameters
+          </h5>
+        </div>
+        <div class="card-body">
+          <div class="row g-4">
+            <div class="col-md-4">
+              <label class="form-label">
+                <i class="fas fa-list-ol" style="color: var(--primary); margin-right: 0.5rem;"></i>
+                Rows to Generate
+              </label>
+              <input name="num_rows" 
+                     type="number" 
+                     class="form-control" 
+                     value="{{ config.generation.num_rows }}"
+                     placeholder="e.g., 10000">
+              <small class="form-text text-muted">Number of synthetic records to create</small>
+            </div>
+
+            <div class="col-md-4">
+              <label class="form-label">
+                <i class="fas fa-layer-group" style="color: var(--primary); margin-right: 0.5rem;"></i>
+                Batch Size
+              </label>
+              <input name="batch_size" 
+                     type="number" 
+                     class="form-control" 
+                     value="{{ config.generation.batch_size }}"
+                     placeholder="e.g., 1000">
+              <small class="form-text text-muted">Process records in batches</small>
+            </div>
+
+            <div class="col-md-4">
+              <label class="form-label">
+                <i class="fas fa-dice" style="color: var(--primary); margin-right: 0.5rem;"></i>
+                Random Seed
+              </label>
+              <input name="seed" 
+                     type="number" 
+                     class="form-control" 
+                     value="{{ config.generation.seed }}"
+                     placeholder="e.g., 42">
+              <small class="form-text text-muted">For reproducible results</small>
+            </div>
+          </div>
+
+          <hr style="margin: 2rem 0; border-color: var(--border);">
+
+          <!-- Advanced Options -->
+          <div class="setting-group">
+            <div class="setting-item">
+              <div class="d-flex justify-content-between align-items-start">
+                <div>
+                  <h6 style="font-weight: 600; color: var(--text); margin-bottom: 0.5rem;">
+                    <i class="fas fa-project-diagram" style="color: var(--secondary);"></i>
+                    Preserve Numeric Correlations
+                  </h6>
+                  <p style="font-size: 0.9rem; color: var(--text-muted); margin: 0;">
+                    Maintain statistical relationships between numeric columns in the synthetic data
+                  </p>
+                </div>
+                <div class="form-check form-switch">
+                  <input type="checkbox" 
+                         name="preserve_correlations" 
+                         class="form-check-input" 
+                         role="switch"
+                         {% if config.numeric.preserve_correlations %}checked{% endif %}
+                         style="width: 3rem; height: 1.5rem; cursor: pointer;">
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Quick Actions -->
+    <div class="col-lg-4">
+      <div class="card">
+        <div class="card-header">
+          <h5 style="margin: 0; font-weight: 700;">
+            <i class="fas fa-bolt" style="color: var(--warning);"></i> Quick Actions
+          </h5>
+        </div>
+        <div class="card-body">
+          <button type="submit" class="btn btn-success w-100 mb-3">
+            <i class="fas fa-save"></i> Save Configuration
+          </button>
+          
+          <button type="button" class="btn btn-outline-primary w-100 mb-3" onclick="resetToDefaults()">
+            <i class="fas fa-undo"></i> Reset to Defaults
+          </button>
+
+          <div class="info-box" style="
+            background: rgba(255, 176, 32, 0.1); 
+            border-left: 4px solid var(--warning);
+            padding: 1rem;
+            border-radius: 10px;
+          ">
+            <h6 style="font-weight: 600; color: var(--warning); margin-bottom: 0.5rem;">
+              <i class="fas fa-info-circle"></i> Tip
+            </h6>
+            <p style="font-size: 0.85rem; color: var(--text-muted); margin: 0;">
+              Start with default settings for your first run. You can fine-tune parameters later based on results.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Preset Templates -->
+      <div class="card mt-4">
+        <div class="card-header">
+          <h5 style="margin: 0; font-weight: 700;">
+            <i class="fas fa-magic" style="color: var(--accent);"></i> Presets
+          </h5>
+        </div>
+        <div class="card-body">
+          <div class="preset-item" onclick="applyPreset('small')">
+            <i class="fas fa-file-alt"></i>
+            <div>
+              <strong>Small Dataset</strong>
+              <small>1K rows, fast generation</small>
+            </div>
+          </div>
+          <div class="preset-item" onclick="applyPreset('medium')">
+            <i class="fas fa-database"></i>
+            <div>
+              <strong>Medium Dataset</strong>
+              <small>10K rows, balanced</small>
+            </div>
+          </div>
+          <div class="preset-item" onclick="applyPreset('large')">
+            <i class="fas fa-server"></i>
+            <div>
+              <strong>Large Dataset</strong>
+              <small>100K rows, production scale</small>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</form>
+
+{% if saved %}
+<div class="alert alert-success mt-4" style="animation: slideInUp 0.4s ease-out;">
+  <i class="fas fa-check-circle"></i>
+  <strong>Success!</strong> Configuration saved successfully
+</div>
+{% endif %}
+
+<style>
+  .setting-group {
+    margin-top: 1.5rem;
+  }
+
+  .setting-item {
+    padding: 1.5rem;
+    background: var(--bg);
+    border-radius: 12px;
+    margin-bottom: 1rem;
+    transition: all 0.3s ease;
+  }
+
+  .setting-item:hover {
+    background: rgba(15, 82, 186, 0.03);
+    transform: translateX(5px);
+  }
+
+  .form-check-input {
+    border: 2px solid var(--border);
+  }
+
+  .form-check-input:checked {
+    background-color: var(--primary);
+    border-color: var(--primary);
+  }
+
+  .form-check-input:focus {
+    box-shadow: 0 0 0 4px rgba(15, 82, 186, 0.1);
+  }
+
+  .preset-item {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 1rem;
+    background: var(--bg);
+    border-radius: 10px;
+    margin-bottom: 0.75rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+
+  .preset-item:hover {
+    background: var(--gradient-primary);
+    color: white;
+    transform: translateX(5px);
+  }
+
+  .preset-item i {
+    font-size: 1.5rem;
+    color: var(--primary);
+    transition: all 0.3s ease;
+  }
+
+  .preset-item:hover i {
+    color: white;
+  }
+
+  .preset-item strong {
+    display: block;
+    font-weight: 600;
+  }
+
+  .preset-item small {
+    display: block;
+    opacity: 0.8;
+    font-size: 0.8rem;
+  }
+
+  .preset-item:hover small {
+    color: rgba(255, 255, 255, 0.9);
+  }
+
+  @keyframes slideInUp {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+</style>
+
+<script>
+  function resetToDefaults() {
+    if (confirm('Reset all settings to default values?')) {
+      document.querySelector('input[name="num_rows"]').value = 1000;
+      document.querySelector('input[name="batch_size"]').value = 100;
+      document.querySelector('input[name="seed"]').value = 42;
+      document.querySelector('input[name="preserve_correlations"]').checked = true;
+    }
+  }
+
+  function applyPreset(type) {
+    const presets = {
+      small: { rows: 1000, batch: 100 },
+      medium: { rows: 10000, batch: 500 },
+      large: { rows: 100000, batch: 1000 }
+    };
+    
+    const preset = presets[type];
+    document.querySelector('input[name="num_rows"]').value = preset.rows;
+    document.querySelector('input[name="batch_size"]').value = preset.batch;
+    
+    // Visual feedback
+    const presetItems = document.querySelectorAll('.preset-item');
+    presetItems.forEach(item => {
+      item.style.background = 'var(--bg)';
+    });
+    event.currentTarget.style.background = 'rgba(15, 82, 186, 0.1)';
+  }
+</script>
+
+{% endblock %}

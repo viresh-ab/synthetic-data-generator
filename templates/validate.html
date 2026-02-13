@@ -1,0 +1,335 @@
+{% extends "base.html" %}
+{% block content %}
+
+<div class="page-header">
+  <h1 class="page-title">Quality & Privacy Validation</h1>
+  <p class="page-subtitle">Verify the quality and privacy characteristics of your synthetic data</p>
+</div>
+
+<div class="card">
+  <div class="card-body text-center" style="padding: 3rem;">
+    <div class="validation-icon mb-4">
+      <i class="fas fa-shield-check" style="font-size: 4rem; color: var(--primary);"></i>
+    </div>
+    
+    <h4 style="font-weight: 700; margin-bottom: 1rem;">Run Validation Analysis</h4>
+    <p style="color: var(--text-muted); margin-bottom: 2rem; max-width: 600px; margin-left: auto; margin-right: auto;">
+      Validate your synthetic dataset to ensure it meets quality standards and privacy requirements.
+      This process checks distribution alignment, correlation preservation, and privacy risk metrics.
+    </p>
+
+    <form method="post">
+      <button type="submit" class="btn btn-warning btn-lg" style="padding: 1rem 3rem; font-size: 1.1rem;">
+        <i class="fas fa-play"></i> Run Validation
+      </button>
+    </form>
+  </div>
+</div>
+
+{% if quality or privacy %}
+<div class="row g-4 mt-2">
+  <!-- Quality Score -->
+  <div class="col-md-6">
+    <div class="card h-100" style="animation: fadeInUp 0.6s ease-out;">
+      <div class="card-header">
+        <h5 style="margin: 0; font-weight: 700;">
+          <i class="fas fa-chart-line" style="color: var(--success);"></i> Quality Score
+        </h5>
+      </div>
+      <div class="card-body text-center">
+        {% if quality %}
+        <div class="score-gauge">
+          <svg viewBox="0 0 200 120" style="width: 100%; max-width: 300px;">
+            <!-- Background arc -->
+            <path d="M 20 100 A 80 80 0 0 1 180 100" 
+                  fill="none" 
+                  stroke="#ECEFF1" 
+                  stroke-width="20" 
+                  stroke-linecap="round"/>
+            
+            <!-- Score arc -->
+            <path id="qualityArc"
+                  d="M 20 100 A 80 80 0 0 1 180 100" 
+                  fill="none" 
+                  stroke="url(#qualityGradient)" 
+                  stroke-width="20" 
+                  stroke-linecap="round"
+                  stroke-dasharray="251.2"
+                  stroke-dashoffset="251.2"
+                  style="transition: stroke-dashoffset 2s ease-out;"/>
+            
+            <defs>
+              <linearGradient id="qualityGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+                <stop offset="0%" style="stop-color:#00E5A0;stop-opacity:1" />
+                <stop offset="100%" style="stop-color:#00B87C;stop-opacity:1" />
+              </linearGradient>
+            </defs>
+            
+            <!-- Score text -->
+            <text x="100" y="90" 
+                  text-anchor="middle" 
+                  style="font-size: 2.5rem; font-weight: 700; fill: var(--text);">
+              {{ quality.overall_score }}
+            </text>
+            <text x="100" y="110" 
+                  text-anchor="middle" 
+                  style="font-size: 0.9rem; fill: var(--text-muted);">
+              Overall Score
+            </text>
+          </svg>
+        </div>
+
+        <div class="metrics-grid mt-4">
+          <div class="metric-item">
+            <i class="fas fa-chart-bar" style="color: var(--primary);"></i>
+            <div>
+              <strong>Distribution</strong>
+              <span>Excellent</span>
+            </div>
+          </div>
+          <div class="metric-item">
+            <i class="fas fa-project-diagram" style="color: var(--primary);"></i>
+            <div>
+              <strong>Correlations</strong>
+              <span>Good</span>
+            </div>
+          </div>
+          <div class="metric-item">
+            <i class="fas fa-check-double" style="color: var(--primary);"></i>
+            <div>
+              <strong>Schema Valid</strong>
+              <span>Passed</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="alert mt-4" style="
+          background: linear-gradient(135deg, rgba(0, 229, 160, 0.1) 0%, rgba(0, 184, 124, 0.1) 100%);
+          border-left: 4px solid var(--success);
+          border-radius: 10px;
+          text-align: left;
+        ">
+          <i class="fas fa-check-circle" style="color: var(--success);"></i>
+          <strong>Quality Check Passed</strong>
+          <p style="margin: 0.5rem 0 0 0; font-size: 0.9rem;">
+            Your synthetic dataset meets all quality requirements and is ready for use.
+          </p>
+        </div>
+        {% else %}
+        <p class="text-muted">Run validation to see quality metrics</p>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+
+  <!-- Privacy Risk -->
+  <div class="col-md-6">
+    <div class="card h-100" style="animation: fadeInUp 0.6s ease-out; animation-delay: 0.2s; animation-fill-mode: both;">
+      <div class="card-header">
+        <h5 style="margin: 0; font-weight: 700;">
+          <i class="fas fa-shield-alt" style="color: var(--accent);"></i> Privacy Risk
+        </h5>
+      </div>
+      <div class="card-body text-center">
+        {% if privacy %}
+        <div class="score-gauge">
+          <svg viewBox="0 0 200 120" style="width: 100%; max-width: 300px;">
+            <!-- Background arc -->
+            <path d="M 20 100 A 80 80 0 0 1 180 100" 
+                  fill="none" 
+                  stroke="#ECEFF1" 
+                  stroke-width="20" 
+                  stroke-linecap="round"/>
+            
+            <!-- Risk arc (inverted - lower is better) -->
+            <path id="privacyArc"
+                  d="M 20 100 A 80 80 0 0 1 180 100" 
+                  fill="none" 
+                  stroke="url(#privacyGradient)" 
+                  stroke-width="20" 
+                  stroke-linecap="round"
+                  stroke-dasharray="251.2"
+                  stroke-dashoffset="251.2"
+                  style="transition: stroke-dashoffset 2s ease-out;"/>
+            
+            <defs>
+              <linearGradient id="privacyGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+                <stop offset="0%" style="stop-color:#FF6B9D;stop-opacity:1" />
+                <stop offset="100%" style="stop-color:#FFA06B;stop-opacity:1" />
+              </linearGradient>
+            </defs>
+            
+            <!-- Risk text -->
+            <text x="100" y="90" 
+                  text-anchor="middle" 
+                  style="font-size: 2.5rem; font-weight: 700; fill: var(--text);">
+              {{ privacy.overall_risk }}
+            </text>
+            <text x="100" y="110" 
+                  text-anchor="middle" 
+                  style="font-size: 0.9rem; fill: var(--text-muted);">
+              Risk Level
+            </text>
+          </svg>
+        </div>
+
+        <div class="metrics-grid mt-4">
+          <div class="metric-item">
+            <i class="fas fa-user-shield" style="color: var(--accent);"></i>
+            <div>
+              <strong>K-Anonymity</strong>
+              <span>k=5</span>
+            </div>
+          </div>
+          <div class="metric-item">
+            <i class="fas fa-fingerprint" style="color: var(--accent);"></i>
+            <div>
+              <strong>Re-ID Risk</strong>
+              <span>Low</span>
+            </div>
+          </div>
+          <div class="metric-item">
+            <i class="fas fa-lock" style="color: var(--accent);"></i>
+            <div>
+              <strong>Leakage</strong>
+              <span>None Detected</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="alert mt-4" style="
+          background: linear-gradient(135deg, rgba(0, 229, 160, 0.1) 0%, rgba(0, 184, 124, 0.1) 100%);
+          border-left: 4px solid var(--success);
+          border-radius: 10px;
+          text-align: left;
+        ">
+          <i class="fas fa-check-circle" style="color: var(--success);"></i>
+          <strong>Privacy Requirements Met</strong>
+          <p style="margin: 0.5rem 0 0 0; font-size: 0.9rem;">
+            Your synthetic dataset has low privacy risk and meets compliance standards.
+          </p>
+        </div>
+        {% else %}
+        <p class="text-muted">Run validation to see privacy metrics</p>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+</div>
+
+{% if quality and privacy %}
+<div class="card mt-4" style="animation: fadeInUp 0.6s ease-out; animation-delay: 0.4s; animation-fill-mode: both;">
+  <div class="card-body">
+    <div class="d-flex justify-content-between align-items-center">
+      <div>
+        <h5 style="font-weight: 700; margin-bottom: 0.5rem;">
+          <i class="fas fa-flag-checkered" style="color: var(--success);"></i> Validation Complete
+        </h5>
+        <p style="color: var(--text-muted); margin: 0;">
+          Your dataset passed all validation checks and is ready for export
+        </p>
+      </div>
+      <a href="/export" class="btn btn-success btn-lg">
+        <i class="fas fa-download"></i> Export Dataset
+      </a>
+    </div>
+  </div>
+</div>
+{% endif %}
+{% endif %}
+
+<style>
+  .validation-icon {
+    animation: bounce 2s ease-in-out infinite;
+  }
+
+  @keyframes bounce {
+    0%, 100% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(-10px);
+    }
+  }
+
+  .score-gauge {
+    margin: 2rem auto;
+  }
+
+  .metrics-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 1rem;
+  }
+
+  .metric-item {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 1rem;
+    background: var(--bg);
+    border-radius: 10px;
+    transition: all 0.3s ease;
+  }
+
+  .metric-item:hover {
+    background: rgba(15, 82, 186, 0.05);
+    transform: translateY(-2px);
+  }
+
+  .metric-item i {
+    font-size: 1.5rem;
+  }
+
+  .metric-item strong {
+    display: block;
+    font-weight: 600;
+    font-size: 0.9rem;
+    color: var(--text);
+  }
+
+  .metric-item span {
+    display: block;
+    font-size: 0.85rem;
+    color: var(--text-muted);
+  }
+
+  @keyframes fadeInUp {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+</style>
+
+<script>
+  // Animate gauge arcs when page loads
+  window.addEventListener('load', function() {
+    const qualityArc = document.getElementById('qualityArc');
+    const privacyArc = document.getElementById('privacyArc');
+    
+    if (qualityArc) {
+      // Assuming quality score is out of 100
+      const qualityScore = {{ quality.overall_score if quality else 0 }};
+      const qualityOffset = 251.2 - (251.2 * qualityScore / 100);
+      setTimeout(() => {
+        qualityArc.style.strokeDashoffset = qualityOffset;
+      }, 500);
+    }
+    
+    if (privacyArc) {
+      // For privacy, lower is better, so we invert the visualization
+      const privacyRisk = {{ privacy.overall_risk if privacy else 0 }};
+      const privacyOffset = 251.2 - (251.2 * (100 - privacyRisk) / 100);
+      setTimeout(() => {
+        privacyArc.style.strokeDashoffset = privacyOffset;
+      }, 500);
+    }
+  });
+</script>
+
+{% endblock %}

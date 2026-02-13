@@ -1,0 +1,272 @@
+{% extends "base.html" %}
+{% block content %}
+
+<div class="page-header">
+  <h1 class="page-title">Welcome to SynthGen</h1>
+  <p class="page-subtitle">Create production-ready synthetic datasets with advanced privacy guardrails</p>
+</div>
+
+<!-- Hero Card -->
+<div class="card hero-card mb-4" style="background: var(--gradient-primary); color: white; border: none;">
+  <div class="card-body" style="padding: 3rem;">
+    <div class="row align-items-center">
+      <div class="col-lg-8">
+        <h2 style="font-size: 2.5rem; font-weight: 700; margin-bottom: 1rem; letter-spacing: -0.02em;">
+          ✨ Synthetic Data, Simplified
+        </h2>
+        <p style="font-size: 1.15rem; opacity: 0.95; margin-bottom: 2rem; line-height: 1.6;">
+          Generate high-quality synthetic datasets that preserve statistical properties while 
+          ensuring privacy compliance. Perfect for testing, development, and ML training.
+        </p>
+        <div class="d-flex gap-3">
+          <a href="/upload" class="btn" style="background: white; color: var(--primary); font-weight: 600;">
+            <i class="fas fa-rocket"></i> Get Started
+          </a>
+          <button class="btn" style="background: rgba(255,255,255,0.2); color: white; border: 2px solid rgba(255,255,255,0.3);">
+            <i class="fas fa-book"></i> Documentation
+          </button>
+        </div>
+      </div>
+      <div class="col-lg-4 text-center">
+        <div style="font-size: 8rem; opacity: 0.15; animation: float 6s ease-in-out infinite;">
+          <i class="fas fa-database"></i>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Feature Grid -->
+<div class="row g-4 mb-4">
+  <div class="col-md-4">
+    <div class="card feature-card h-100">
+      <div class="card-body">
+        <div class="feature-icon" style="
+          width: 60px; 
+          height: 60px; 
+          background: linear-gradient(135deg, #667EEA 0%, #764BA2 100%); 
+          border-radius: 14px; 
+          display: flex; 
+          align-items: center; 
+          justify-content: center; 
+          margin-bottom: 1.5rem;
+          box-shadow: 0 8px 16px rgba(102, 126, 234, 0.3);
+        ">
+          <i class="fas fa-chart-line" style="font-size: 1.5rem; color: white;"></i>
+        </div>
+        <h5 style="font-weight: 700; margin-bottom: 1rem; color: var(--text);">
+          📊 Smart Generation
+        </h5>
+        <ul style="list-style: none; padding: 0; color: var(--text-muted); line-height: 2;">
+          <li><i class="fas fa-check-circle" style="color: var(--success); margin-right: 0.5rem;"></i>Numeric correlations preserved</li>
+          <li><i class="fas fa-check-circle" style="color: var(--success); margin-right: 0.5rem;"></i>Text & PII synthesis</li>
+          <li><i class="fas fa-check-circle" style="color: var(--success); margin-right: 0.5rem;"></i>Temporal pattern matching</li>
+          <li><i class="fas fa-check-circle" style="color: var(--success); margin-right: 0.5rem;"></i>Schema-aware generation</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-md-4">
+    <div class="card feature-card h-100">
+      <div class="card-body">
+        <div class="feature-icon" style="
+          width: 60px; 
+          height: 60px; 
+          background: linear-gradient(135deg, #00E5A0 0%, #00B87C 100%); 
+          border-radius: 14px; 
+          display: flex; 
+          align-items: center; 
+          justify-content: center; 
+          margin-bottom: 1.5rem;
+          box-shadow: 0 8px 16px rgba(0, 229, 160, 0.3);
+        ">
+          <i class="fas fa-check-double" style="font-size: 1.5rem; color: white;"></i>
+        </div>
+        <h5 style="font-weight: 700; margin-bottom: 1rem; color: var(--text);">
+          ✅ Quality Validation
+        </h5>
+        <ul style="list-style: none; padding: 0; color: var(--text-muted); line-height: 2;">
+          <li><i class="fas fa-check-circle" style="color: var(--success); margin-right: 0.5rem;"></i>Distribution alignment</li>
+          <li><i class="fas fa-check-circle" style="color: var(--success); margin-right: 0.5rem;"></i>Correlation verification</li>
+          <li><i class="fas fa-check-circle" style="color: var(--success); margin-right: 0.5rem;"></i>Schema validation</li>
+          <li><i class="fas fa-check-circle" style="color: var(--success); margin-right: 0.5rem;"></i>Automated scoring</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-md-4">
+    <div class="card feature-card h-100">
+      <div class="card-body">
+        <div class="feature-icon" style="
+          width: 60px; 
+          height: 60px; 
+          background: linear-gradient(135deg, #FF6B9D 0%, #FFA06B 100%); 
+          border-radius: 14px; 
+          display: flex; 
+          align-items: center; 
+          justify-content: center; 
+          margin-bottom: 1.5rem;
+          box-shadow: 0 8px 16px rgba(255, 107, 157, 0.3);
+        ">
+          <i class="fas fa-shield-alt" style="font-size: 1.5rem; color: white;"></i>
+        </div>
+        <h5 style="font-weight: 700; margin-bottom: 1rem; color: var(--text);">
+          🔒 Privacy Guardrails
+        </h5>
+        <ul style="list-style: none; padding: 0; color: var(--text-muted); line-height: 2;">
+          <li><i class="fas fa-check-circle" style="color: var(--success); margin-right: 0.5rem;"></i>K-anonymity enforcement</li>
+          <li><i class="fas fa-check-circle" style="color: var(--success); margin-right: 0.5rem;"></i>Re-identification risk analysis</li>
+          <li><i class="fas fa-check-circle" style="color: var(--success); margin-right: 0.5rem;"></i>Leakage detection</li>
+          <li><i class="fas fa-check-circle" style="color: var(--success); margin-right: 0.5rem;"></i>Compliance reports</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Quick Start Guide -->
+<div class="card">
+  <div class="card-header">
+    <h5 style="margin: 0; font-weight: 700;">
+      <i class="fas fa-rocket" style="color: var(--primary);"></i> Quick Start Guide
+    </h5>
+  </div>
+  <div class="card-body">
+    <div class="row g-4">
+      <div class="col-md-2 text-center">
+        <div class="step-number" style="
+          width: 60px; 
+          height: 60px; 
+          background: var(--gradient-primary); 
+          border-radius: 50%; 
+          display: flex; 
+          align-items: center; 
+          justify-content: center; 
+          margin: 0 auto 1rem; 
+          color: white; 
+          font-weight: 700; 
+          font-size: 1.5rem;
+          box-shadow: 0 4px 12px rgba(15, 82, 186, 0.3);
+        ">1</div>
+        <h6 style="font-weight: 600; color: var(--text);">Upload Data</h6>
+        <p style="font-size: 0.85rem; color: var(--text-muted);">Upload your reference dataset</p>
+      </div>
+
+      <div class="col-md-2 text-center">
+        <div class="step-number" style="
+          width: 60px; 
+          height: 60px; 
+          background: var(--gradient-primary); 
+          border-radius: 50%; 
+          display: flex; 
+          align-items: center; 
+          justify-content: center; 
+          margin: 0 auto 1rem; 
+          color: white; 
+          font-weight: 700; 
+          font-size: 1.5rem;
+          box-shadow: 0 4px 12px rgba(15, 82, 186, 0.3);
+        ">2</div>
+        <h6 style="font-weight: 600; color: var(--text);">Configure</h6>
+        <p style="font-size: 0.85rem; color: var(--text-muted);">Set generation parameters</p>
+      </div>
+
+      <div class="col-md-2 text-center">
+        <div class="step-number" style="
+          width: 60px; 
+          height: 60px; 
+          background: var(--gradient-primary); 
+          border-radius: 50%; 
+          display: flex; 
+          align-items: center; 
+          justify-content: center; 
+          margin: 0 auto 1rem; 
+          color: white; 
+          font-weight: 700; 
+          font-size: 1.5rem;
+          box-shadow: 0 4px 12px rgba(15, 82, 186, 0.3);
+        ">3</div>
+        <h6 style="font-weight: 600; color: var(--text);">Generate</h6>
+        <p style="font-size: 0.85rem; color: var(--text-muted);">Create synthetic data</p>
+      </div>
+
+      <div class="col-md-2 text-center">
+        <div class="step-number" style="
+          width: 60px; 
+          height: 60px; 
+          background: var(--gradient-primary); 
+          border-radius: 50%; 
+          display: flex; 
+          align-items: center; 
+          justify-content: center; 
+          margin: 0 auto 1rem; 
+          color: white; 
+          font-weight: 700; 
+          font-size: 1.5rem;
+          box-shadow: 0 4px 12px rgba(15, 82, 186, 0.3);
+        ">4</div>
+        <h6 style="font-weight: 600; color: var(--text);">Validate</h6>
+        <p style="font-size: 0.85rem; color: var(--text-muted);">Check quality & privacy</p>
+      </div>
+
+      <div class="col-md-2 text-center">
+        <div class="step-number" style="
+          width: 60px; 
+          height: 60px; 
+          background: var(--gradient-primary); 
+          border-radius: 50%; 
+          display: flex; 
+          align-items: center; 
+          justify-content: center; 
+          margin: 0 auto 1rem; 
+          color: white; 
+          font-weight: 700; 
+          font-size: 1.5rem;
+          box-shadow: 0 4px 12px rgba(15, 82, 186, 0.3);
+        ">5</div>
+        <h6 style="font-weight: 600; color: var(--text);">Export</h6>
+        <p style="font-size: 0.85rem; color: var(--text-muted);">Download results</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<style>
+  @keyframes float {
+    0%, 100% {
+      transform: translateY(0px);
+    }
+    50% {
+      transform: translateY(-20px);
+    }
+  }
+
+  .feature-card {
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .feature-card:hover {
+    transform: translateY(-8px);
+    box-shadow: var(--shadow-lg);
+  }
+
+  .feature-card:hover .feature-icon {
+    transform: scale(1.1) rotate(5deg);
+  }
+
+  .feature-icon {
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .step-number {
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .step-number:hover {
+    transform: scale(1.1);
+  }
+</style>
+
+{% endblock %}
