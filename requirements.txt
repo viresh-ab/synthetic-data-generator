@@ -8,34 +8,27 @@ pyyaml>=6.0,<7.0
 python-dotenv>=1.0.0,<2.0.0
 
 # Data generation
-faker>=24.0.0,<25.0.0  # For PII generation (names, emails, addresses, etc.)
-
-# LLM integration (optional - install as needed)
-# Uncomment if using LLM features
-# anthropic>=0.18.0  # For Claude
-# openai>=1.0.0      # For GPT
+faker>=24.0.0,<25.0.0
 
 # Statistics and ML
 scikit-learn>=1.3.0,<1.6.0
 
-# Web UI (Streamlit)
-streamlit>=1.30.0,<1.35.0
-plotly>=5.14.0,<6.0.0
-
-# API (FastAPI)
+# UI + API
 fastapi>=0.109.0,<0.115.0
 uvicorn[standard]>=0.27.0,<0.30.0
 python-multipart>=0.0.6,<0.1.0
+jinja2>=3.1.0,<4.0.0
+plotly>=5.14.0,<6.0.0
 
 # CLI
-rich>=13.0.0,<14.0.0  # Beautiful terminal output
-click>=8.1.0,<9.0.0  # Alternative to argparse (optional)
+rich>=13.0.0,<14.0.0
+click>=8.1.0,<9.0.0
 
 # File formats
-openpyxl>=3.1.0,<3.2.0  # Excel support
-pyarrow>=14.0.0,<16.0.0  # Parquet support
-xlrd>=2.0.0,<3.0.0      # Excel .xls support
+openpyxl>=3.1.0,<3.2.0
+pyarrow>=14.0.0,<16.0.0
+xlrd>=2.0.0,<3.0.0
 
 # Utilities
 python-dateutil>=2.8.0,<3.0.0
-tqdm>=4.65.0,<5.0.0  # Progress bars
+tqdm>=4.65.0,<5.0.0
