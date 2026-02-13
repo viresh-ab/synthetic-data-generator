@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+{% block content %}
+
+<h3>🎲 Generate Synthetic Data</h3>
+
+<form method="post" onsubmit="showLoader()">
+  <button class="btn btn-primary">
+    🚀 Generate
+  </button>
+</form>
+
+<!-- Loader -->
+<div id="loader" style="display:none;" class="mt-4">
+  <div class="spinner-border text-primary"></div>
+  <span class="ms-2">Generating synthetic data — please wait...</span>
+</div>
+
+{% if preview %}
+<hr>
+<h5>Preview</h5>
+{{ preview|safe }}
+{% endif %}
+
+<script>
+function showLoader() {
+  document.getElementById("loader").style.display = "block";
+}
+</script>
+
+{% endblock %}

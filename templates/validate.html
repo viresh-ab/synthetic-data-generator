@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% block content %}
+<h3>Validation</h3>
+<form method="post">
+<button class="btn btn-warning">Run Validation</button>
+</form>
+
+{% if quality %}
+<p>Quality Score: {{ quality.overall_score }}</p>
+{% endif %}
+
+{% if privacy %}
+<p>Privacy Risk: {{ privacy.overall_risk }}</p>
+{% endif %}
+{% endblock %}
