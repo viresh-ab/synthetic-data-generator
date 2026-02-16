@@ -7,28 +7,29 @@
 </div>
 
 <!-- Hero Card -->
-<div class="card hero-card mb-4" style="background: var(--gradient-primary); color: white; border: none;">
-  <div class="card-body" style="padding: 3rem;">
+<div class="card hero-card mb-4" style="background: var(--gradient-primary); color: white; border: none; position: relative; overflow: hidden;">
+  <div class="hero-glow"></div>
+  <div class="card-body" style="padding: 3rem; position: relative; z-index: 1;">
     <div class="row align-items-center">
       <div class="col-lg-8">
-        <h2 style="font-size: 2.3rem; font-weight: 700; margin-bottom: 1rem; letter-spacing: -0.02em;">
-           Synthetic Data Engine
+        <h2 style="font-size: 2rem; font-weight: 800; margin-bottom: 1rem; letter-spacing: -0.02em;">
+        Synthetic Data, Simplified
         </h2>
-        <p style="font-size: 1rem; opacity: 0.95; margin-bottom: 2rem; line-height: 1.6;">
+        <p style="font-size: 0.9rem; opacity: 0.95; margin-bottom: 2rem; line-height: 1.6;">
           Generate high-quality synthetic datasets that preserve statistical properties while 
           ensuring privacy compliance. Perfect for testing, development, and ML training.
         </p>
         <div class="d-flex gap-3">
-          <a href="/upload" class="btn" style="background: white; color: var(--primary); font-weight: 600;">
+          <a href="/upload" class="btn" style="background: white; color: var(--primary); font-weight: 700;">
             <i class="fas fa-rocket"></i> Get Started
           </a>
-          <button class="btn" style="background: rgba(255,255,255,0.2); color: white; border: 2px solid rgba(255,255,255,0.3);">
+          <button class="btn" style="background: rgba(255,255,255,0.15); color: white; border: 2px solid rgba(255,255,255,0.3); backdrop-filter: blur(10px);">
             <i class="fas fa-book"></i> Documentation
           </button>
         </div>
       </div>
       <div class="col-lg-4 text-center">
-        <div style="font-size: 6rem; opacity: 0.15; animation: float 6s ease-in-out infinite;">
+        <div style="font-size: 8rem; opacity: 0.2; animation: float 6s ease-in-out infinite;">
           <i class="fas fa-database"></i>
         </div>
       </div>
@@ -44,20 +45,20 @@
         <div class="feature-icon" style="
           width: 60px; 
           height: 60px; 
-          background: linear-gradient(135deg, #667EEA 0%, #764BA2 100%); 
+          background: linear-gradient(135deg, #8B5CF6 0%, #6366F1 100%); 
           border-radius: 14px; 
           display: flex; 
           align-items: center; 
           justify-content: center; 
           margin-bottom: 1.5rem;
-          box-shadow: 0 8px 16px rgba(102, 126, 234, 0.3);
+          box-shadow: 0 8px 16px rgba(139, 92, 246, 0.4);
         ">
           <i class="fas fa-chart-line" style="font-size: 1.5rem; color: white;"></i>
         </div>
-        <h5 style="font-weight: 700; margin-bottom: 1rem; color: var(--text);">
+        <h5 style="font-weight: 700; margin-bottom: 1rem; color: var(--text-primary);">
           Smart Generation
         </h5>
-        <ul style="list-style: none; padding: 0; font-size:13px; color: var(--text-muted); line-height: 2;">
+        <ul style="list-style: none; padding: 0; color: var(--text-secondary); line-height: 2;font-size: 0.9rem;">
           <li><i class="fas fa-check-circle" style="color: var(--success); margin-right: 0.5rem;"></i>Numeric correlations preserved</li>
           <li><i class="fas fa-check-circle" style="color: var(--success); margin-right: 0.5rem;"></i>Text & PII synthesis</li>
           <li><i class="fas fa-check-circle" style="color: var(--success); margin-right: 0.5rem;"></i>Temporal pattern matching</li>
@@ -73,20 +74,20 @@
         <div class="feature-icon" style="
           width: 60px; 
           height: 60px; 
-          background: linear-gradient(135deg, #00E5A0 0%, #00B87C 100%); 
+          background: linear-gradient(135deg, #10B981 0%, #059669 100%); 
           border-radius: 14px; 
           display: flex; 
           align-items: center; 
           justify-content: center; 
           margin-bottom: 1.5rem;
-          box-shadow: 0 8px 16px rgba(0, 229, 160, 0.3);
+          box-shadow: 0 8px 16px rgba(16, 185, 129, 0.4);
         ">
           <i class="fas fa-check-double" style="font-size: 1.5rem; color: white;"></i>
         </div>
-        <h5 style="font-weight: 700; margin-bottom: 1rem; color: var(--text);">
+        <h5 style="font-weight: 700; margin-bottom: 1rem; color: var(--text-primary);">
           Quality Validation
         </h5>
-        <ul style="list-style: none; padding: 0; font-size:13px; color: var(--text-muted); line-height: 2;">
+        <ul style="list-style: none; padding: 0; color: var(--text-secondary); line-height: 2;font-size: 0.9rem;">
           <li><i class="fas fa-check-circle" style="color: var(--success); margin-right: 0.5rem;"></i>Distribution alignment</li>
           <li><i class="fas fa-check-circle" style="color: var(--success); margin-right: 0.5rem;"></i>Correlation verification</li>
           <li><i class="fas fa-check-circle" style="color: var(--success); margin-right: 0.5rem;"></i>Schema validation</li>
@@ -102,20 +103,20 @@
         <div class="feature-icon" style="
           width: 60px; 
           height: 60px; 
-          background: linear-gradient(135deg, #FF6B9D 0%, #FFA06B 100%); 
+          background: linear-gradient(135deg, #F472B6 0%, #FB923C 100%); 
           border-radius: 14px; 
           display: flex; 
           align-items: center; 
           justify-content: center; 
           margin-bottom: 1.5rem;
-          box-shadow: 0 8px 16px rgba(255, 107, 157, 0.3);
+          box-shadow: 0 8px 16px rgba(244, 114, 182, 0.4);
         ">
           <i class="fas fa-shield-alt" style="font-size: 1.5rem; color: white;"></i>
         </div>
-        <h5 style="font-weight: 700; margin-bottom: 1rem; color: var(--text);">
+        <h5 style="font-weight: 700; margin-bottom: 1rem; color: var(--text-primary);">
           Privacy Guardrails
         </h5>
-        <ul style="list-style: none; padding: 0; font-size:13px; color: var(--text-muted); line-height: 2;">
+        <ul style="list-style: none; padding: 0; color: var(--text-secondary); line-height: 2; font-size: 0.9rem;">
           <li><i class="fas fa-check-circle" style="color: var(--success); margin-right: 0.5rem;"></i>K-anonymity enforcement</li>
           <li><i class="fas fa-check-circle" style="color: var(--success); margin-right: 0.5rem;"></i>Re-identification risk analysis</li>
           <li><i class="fas fa-check-circle" style="color: var(--success); margin-right: 0.5rem;"></i>Leakage detection</li>
@@ -129,7 +130,7 @@
 <!-- Quick Start Guide -->
 <div class="card">
   <div class="card-header">
-    <h5 style="margin: 0; font-weight: 700;">
+    <h5 style="margin: 0; font-weight: 700; color: var(--text-primary);">
       <i class="fas fa-rocket" style="color: var(--primary);"></i> Quick Start Guide
     </h5>
   </div>
@@ -146,11 +147,11 @@
           justify-content: center; 
           margin: 0 auto 1rem; 
           color: white; 
-          font-weight: 700; 
+          font-weight: 800; 
           font-size: 1.5rem;
-          box-shadow: 0 4px 12px rgba(15, 82, 186, 0.3);
+          box-shadow: 0 4px 12px rgba(59, 130, 246, 0.4), var(--shadow-glow);
         ">1</div>
-        <h6 style="font-weight: 600; color: var(--text);">Upload Data</h6>
+        <h6 style="font-weight: 600; color: var(--text-primary);">Upload Data</h6>
         <p style="font-size: 0.85rem; color: var(--text-muted);">Upload your reference dataset</p>
       </div>
 
@@ -165,11 +166,11 @@
           justify-content: center; 
           margin: 0 auto 1rem; 
           color: white; 
-          font-weight: 700; 
+          font-weight: 800; 
           font-size: 1.5rem;
-          box-shadow: 0 4px 12px rgba(15, 82, 186, 0.3);
+          box-shadow: 0 4px 12px rgba(59, 130, 246, 0.4), var(--shadow-glow);
         ">2</div>
-        <h6 style="font-weight: 600; color: var(--text);">Configure</h6>
+        <h6 style="font-weight: 600; color: var(--text-primary);">Configure</h6>
         <p style="font-size: 0.85rem; color: var(--text-muted);">Set generation parameters</p>
       </div>
 
@@ -184,11 +185,11 @@
           justify-content: center; 
           margin: 0 auto 1rem; 
           color: white; 
-          font-weight: 700; 
+          font-weight: 800; 
           font-size: 1.5rem;
-          box-shadow: 0 4px 12px rgba(15, 82, 186, 0.3);
+          box-shadow: 0 4px 12px rgba(59, 130, 246, 0.4), var(--shadow-glow);
         ">3</div>
-        <h6 style="font-weight: 600; color: var(--text);">Generate</h6>
+        <h6 style="font-weight: 600; color: var(--text-primary);">Generate</h6>
         <p style="font-size: 0.85rem; color: var(--text-muted);">Create synthetic data</p>
       </div>
 
@@ -203,11 +204,11 @@
           justify-content: center; 
           margin: 0 auto 1rem; 
           color: white; 
-          font-weight: 700; 
+          font-weight: 800; 
           font-size: 1.5rem;
-          box-shadow: 0 4px 12px rgba(15, 82, 186, 0.3);
+          box-shadow: 0 4px 12px rgba(59, 130, 246, 0.4), var(--shadow-glow);
         ">4</div>
-        <h6 style="font-weight: 600; color: var(--text);">Validate</h6>
+        <h6 style="font-weight: 600; color: var(--text-primary);">Validate</h6>
         <p style="font-size: 0.85rem; color: var(--text-muted);">Check quality & privacy</p>
       </div>
 
@@ -222,11 +223,11 @@
           justify-content: center; 
           margin: 0 auto 1rem; 
           color: white; 
-          font-weight: 700; 
+          font-weight: 800; 
           font-size: 1.5rem;
-          box-shadow: 0 4px 12px rgba(15, 82, 186, 0.3);
+          box-shadow: 0 4px 12px rgba(59, 130, 246, 0.4), var(--shadow-glow);
         ">5</div>
-        <h6 style="font-weight: 600; color: var(--text);">Export</h6>
+        <h6 style="font-weight: 600; color: var(--text-primary);">Export</h6>
         <p style="font-size: 0.85rem; color: var(--text-muted);">Download results</p>
       </div>
     </div>
@@ -234,22 +235,59 @@
 </div>
 
 <style>
+  .hero-glow {
+    position: absolute;
+    top: -50%;
+    right: -25%;
+    width: 500px;
+    height: 500px;
+    background: radial-gradient(circle, rgba(255, 255, 255, 0.15) 0%, transparent 70%);
+    border-radius: 50%;
+    animation: pulse 4s ease-in-out infinite;
+  }
+
   @keyframes float {
-    0%, 100% {
-      transform: translateY(0px);
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-20px); }
+  }
+
+  @keyframes pulse {
+    0%, 100% { 
+      transform: scale(1);
+      opacity: 0.5;
     }
-    50% {
-      transform: translateY(-20px);
+    50% { 
+      transform: scale(1.1);
+      opacity: 0.8;
     }
   }
 
   .feature-card {
     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .feature-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, rgba(59, 130, 246, 0.05) 0%, transparent 100%);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+
+  .feature-card:hover::before {
+    opacity: 1;
   }
 
   .feature-card:hover {
     transform: translateY(-8px);
     box-shadow: var(--shadow-lg);
+    border-color: rgba(59, 130, 246, 0.5);
   }
 
   .feature-card:hover .feature-icon {
@@ -265,7 +303,7 @@
   }
 
   .step-number:hover {
-    transform: scale(1.1);
+    transform: scale(1.15);
   }
 </style>
 

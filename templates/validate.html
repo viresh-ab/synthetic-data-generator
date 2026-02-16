@@ -7,9 +7,13 @@
 </div>
 
 <div class="card">
-  <div class="card-body text-center" style="padding: 1.25rem;">
-    <h4 style="font-weight: 700; margin-bottom: 1rem;">Run Validation Analysis</h4>
-    <p style="color: var(--text-muted); margin-bottom: 2rem; max-width: 600px; margin-left: auto; margin-right: auto;">
+  <div class="card-body text-center" style="padding: 3rem;">
+    <div class="validation-icon mb-4">
+      <i class="fas fa-shield-check" style="font-size: 4rem; color: var(--primary); filter: drop-shadow(0 0 20px rgba(59, 130, 246, 0.5));"></i>
+    </div>
+    
+    <h4 style="font-weight: 700; margin-bottom: 1rem; color: var(--text-primary);">Run Validation Analysis</h4>
+    <p style="color: var(--text-secondary); margin-bottom: 2rem; max-width: 600px; margin-left: auto; margin-right: auto;">
       Validate your synthetic dataset to ensure it meets quality standards and privacy requirements.
       This process checks distribution alignment, correlation preservation, and privacy risk metrics.
     </p>
@@ -28,7 +32,7 @@
   <div class="col-md-6">
     <div class="card h-100" style="animation: fadeInUp 0.6s ease-out;">
       <div class="card-header">
-        <h5 style="margin: 0; font-weight: 700;">
+        <h5 style="margin: 0; font-weight: 700; color: var(--text-primary);">
           <i class="fas fa-chart-line" style="color: var(--success);"></i> Quality Score
         </h5>
       </div>
@@ -39,7 +43,7 @@
             <!-- Background arc -->
             <path d="M 20 100 A 80 80 0 0 1 180 100" 
                   fill="none" 
-                  stroke="#ECEFF1" 
+                  stroke="rgba(75, 85, 99, 0.3)" 
                   stroke-width="20" 
                   stroke-linecap="round"/>
             
@@ -52,19 +56,19 @@
                   stroke-linecap="round"
                   stroke-dasharray="251.2"
                   stroke-dashoffset="251.2"
-                  style="transition: stroke-dashoffset 2s ease-out;"/>
+                  style="transition: stroke-dashoffset 2s ease-out; filter: drop-shadow(0 0 8px rgba(16, 185, 129, 0.5));"/>
             
             <defs>
               <linearGradient id="qualityGradient" x1="0%" y1="0%" x2="100%" y2="0%">
-                <stop offset="0%" style="stop-color:#00E5A0;stop-opacity:1" />
-                <stop offset="100%" style="stop-color:#00B87C;stop-opacity:1" />
+                <stop offset="0%" style="stop-color:#10B981;stop-opacity:1" />
+                <stop offset="100%" style="stop-color:#059669;stop-opacity:1" />
               </linearGradient>
             </defs>
             
             <!-- Score text -->
             <text x="100" y="90" 
                   text-anchor="middle" 
-                  style="font-size: 1rem; font-weight: 700; fill: var(--text);">
+                  style="font-size: 2.5rem; font-weight: 800; fill: var(--text-primary);">
               {{ quality.overall_score }}
             </text>
             <text x="100" y="110" 
@@ -100,19 +104,20 @@
         </div>
 
         <div class="alert mt-4" style="
-          background: linear-gradient(135deg, rgba(0, 229, 160, 0.1) 0%, rgba(0, 184, 124, 0.1) 100%);
+          background: rgba(16, 185, 129, 0.15);
           border-left: 4px solid var(--success);
           border-radius: 10px;
           text-align: left;
+          border: 1px solid rgba(16, 185, 129, 0.2);
         ">
           <i class="fas fa-check-circle" style="color: var(--success);"></i>
-          <strong>Quality Check Passed</strong>
-          <p style="margin: 1rem 0 0 0; font-size: 0.9rem;">
+          <strong style="color: var(--text-primary);">Quality Check Passed</strong>
+          <p style="margin: 0.5rem 0 0 0; font-size: 0.9rem; color: var(--text-secondary);">
             Your synthetic dataset meets all quality requirements and is ready for use.
           </p>
         </div>
         {% else %}
-        <p class="text-muted">Run validation to see quality metrics</p>
+        <p style="color: var(--text-muted);">Run validation to see quality metrics</p>
         {% endif %}
       </div>
     </div>
@@ -122,7 +127,7 @@
   <div class="col-md-6">
     <div class="card h-100" style="animation: fadeInUp 0.6s ease-out; animation-delay: 0.2s; animation-fill-mode: both;">
       <div class="card-header">
-        <h5 style="margin: 0; font-weight: 700;">
+        <h5 style="margin: 0; font-weight: 700; color: var(--text-primary);">
           <i class="fas fa-shield-alt" style="color: var(--accent);"></i> Privacy Risk
         </h5>
       </div>
@@ -133,7 +138,7 @@
             <!-- Background arc -->
             <path d="M 20 100 A 80 80 0 0 1 180 100" 
                   fill="none" 
-                  stroke="#ECEFF1" 
+                  stroke="rgba(75, 85, 99, 0.3)" 
                   stroke-width="20" 
                   stroke-linecap="round"/>
             
@@ -146,19 +151,19 @@
                   stroke-linecap="round"
                   stroke-dasharray="251.2"
                   stroke-dashoffset="251.2"
-                  style="transition: stroke-dashoffset 2s ease-out;"/>
+                  style="transition: stroke-dashoffset 2s ease-out; filter: drop-shadow(0 0 8px rgba(244, 114, 182, 0.5));"/>
             
             <defs>
               <linearGradient id="privacyGradient" x1="0%" y1="0%" x2="100%" y2="0%">
-                <stop offset="0%" style="stop-color:#FF6B9D;stop-opacity:1" />
-                <stop offset="100%" style="stop-color:#FFA06B;stop-opacity:1" />
+                <stop offset="0%" style="stop-color:#F472B6;stop-opacity:1" />
+                <stop offset="100%" style="stop-color:#FB923C;stop-opacity:1" />
               </linearGradient>
             </defs>
             
             <!-- Risk text -->
             <text x="100" y="90" 
                   text-anchor="middle" 
-                  style="font-size: 1rem; font-weight: 700; fill: var(--text);">
+                  style="font-size: 2.5rem; font-weight: 800; fill: var(--text-primary);">
               {{ privacy.overall_risk }}
             </text>
             <text x="100" y="110" 
@@ -194,19 +199,20 @@
         </div>
 
         <div class="alert mt-4" style="
-          background: linear-gradient(135deg, rgba(0, 229, 160, 0.1) 0%, rgba(0, 184, 124, 0.1) 100%);
+          background: rgba(16, 185, 129, 0.15);
           border-left: 4px solid var(--success);
           border-radius: 10px;
           text-align: left;
+          border: 1px solid rgba(16, 185, 129, 0.2);
         ">
           <i class="fas fa-check-circle" style="color: var(--success);"></i>
-          <strong>Privacy Requirements Met</strong>
-          <p style="margin: 0.5rem 0 0 0; font-size: 0.9rem;">
+          <strong style="color: var(--text-primary);">Privacy Requirements Met</strong>
+          <p style="margin: 0.5rem 0 0 0; font-size: 0.9rem; color: var(--text-secondary);">
             Your synthetic dataset has low privacy risk and meets compliance standards.
           </p>
         </div>
         {% else %}
-        <p class="text-muted">Run validation to see privacy metrics</p>
+        <p style="color: var(--text-muted);">Run validation to see privacy metrics</p>
         {% endif %}
       </div>
     </div>
@@ -218,10 +224,10 @@
   <div class="card-body">
     <div class="d-flex justify-content-between align-items-center">
       <div>
-        <h5 style="font-weight: 700; margin-bottom: 0.5rem;">
+        <h5 style="font-weight: 700; margin-bottom: 0.5rem; color: var(--text-primary);">
           <i class="fas fa-flag-checkered" style="color: var(--success);"></i> Validation Complete
         </h5>
-        <p style="color: var(--text-muted); margin: 0;">
+        <p style="color: var(--text-secondary); margin: 0;">
           Your dataset passed all validation checks and is ready for export
         </p>
       </div>
@@ -263,14 +269,16 @@
     align-items: center;
     gap: 1rem;
     padding: 1rem;
-    background: var(--bg);
+    background: var(--bg-tertiary);
     border-radius: 10px;
     transition: all 0.3s ease;
+    border: 1px solid var(--border-light);
   }
 
   .metric-item:hover {
-    background: rgba(15, 82, 186, 0.05);
+    background: rgba(59, 130, 246, 0.1);
     transform: translateY(-2px);
+    border-color: rgba(59, 130, 246, 0.3);
   }
 
   .metric-item i {
@@ -281,7 +289,7 @@
     display: block;
     font-weight: 600;
     font-size: 0.9rem;
-    color: var(--text);
+    color: var(--text-primary);
   }
 
   .metric-item span {

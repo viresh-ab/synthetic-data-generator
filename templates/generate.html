@@ -7,9 +7,13 @@
 </div>
 
 <div class="card">
-  <div class="card-body text-center" style="padding: 1.25rem;">    
-    <h4 style="font-weight: 700; margin-bottom: 1rem;">Ready to Generate</h4>
-    <p style="color: var(--text-muted); margin-bottom: 2rem;">
+  <div class="card-body text-center" style="padding: 3rem;">
+    <div class="generation-icon mb-4">
+      <i class="fas fa-magic" style="font-size: 4rem; color: var(--primary); filter: drop-shadow(0 0 20px rgba(59, 130, 246, 0.5));"></i>
+    </div>
+    
+    <h4 style="font-weight: 700; margin-bottom: 1rem; color: var(--text-primary);">Ready to Generate</h4>
+    <p style="color: var(--text-secondary); margin-bottom: 2rem;">
       Click the button below to start generating your synthetic dataset
     </p>
 
@@ -33,10 +37,10 @@
       </div>
     </div>
     
-    <h5 style="font-weight: 700; margin-bottom: 1rem; color: var(--text);">
+    <h5 style="font-weight: 700; margin-bottom: 1rem; color: var(--text-primary);">
       Generating Synthetic Data
     </h5>
-    <p style="color: var(--text-muted); margin-bottom: 1.5rem;">
+    <p style="color: var(--text-secondary); margin-bottom: 1.5rem;">
       This may take a few moments. Please don't close this window.
     </p>
 
@@ -71,24 +75,27 @@
 
 {% if preview %}
 <div class="card mt-4" style="animation: fadeInUp 0.6s ease-out;">
-  <div class="card-header" style="background: var(--gradient-primary); color: white;">
+  <div class="card-header" style="background: var(--gradient-primary); color: white; border: none;">
     <h5 style="margin: 0; font-weight: 700;">
       <i class="fas fa-check-circle"></i> Generation Complete!
     </h5>
   </div>
   <div class="card-body">
     <div class="alert" style="
-      background: linear-gradient(135deg, rgba(0, 229, 160, 0.1) 0%, rgba(0, 184, 124, 0.1) 100%);
+      background: rgba(16, 185, 129, 0.15);
       border-left: 4px solid var(--success);
       border-radius: 10px;
       padding: 1rem 1.5rem;
       margin-bottom: 1.5rem;
+      border: 1px solid rgba(16, 185, 129, 0.2);
     ">
       <i class="fas fa-info-circle" style="color: var(--success);"></i>
-      Your synthetic dataset has been generated successfully. Preview the first few rows below.
+      <span style="color: var(--text-secondary);">
+        Your synthetic dataset has been generated successfully. Preview the first few rows below.
+      </span>
     </div>
 
-    <h6 style="font-weight: 600; margin-bottom: 1rem;">
+    <h6 style="font-weight: 600; margin-bottom: 1rem; color: var(--text-primary);">
       <i class="fas fa-table" style="color: var(--primary);"></i> Data Preview
     </h6>
     <div class="table-responsive">
@@ -182,23 +189,28 @@
     width: 40px;
     height: 40px;
     border-radius: 50%;
-    background: var(--bg);
+    background: var(--bg-tertiary);
     display: flex;
     align-items: center;
     justify-content: center;
     color: var(--text-muted);
     font-size: 1rem;
     transition: all 0.3s ease;
+    border: 2px solid var(--border);
   }
 
   .step-item:first-child .step-icon {
     background: var(--success);
     color: white;
+    border-color: var(--success);
+    box-shadow: 0 0 20px rgba(16, 185, 129, 0.4);
   }
 
   .step-item:nth-child(2) .step-icon {
     background: var(--primary);
     color: white;
+    border-color: var(--primary);
+    box-shadow: var(--shadow-glow);
   }
 
   .step-item span {
@@ -212,18 +224,24 @@
   }
 
   table thead {
-    background: var(--bg);
+    background: var(--bg-tertiary);
     font-weight: 600;
-    color: var(--text);
+    color: var(--text-primary);
   }
 
   table tbody tr {
+    border-bottom: 1px solid var(--border-light);
     transition: all 0.2s ease;
   }
 
   table tbody tr:hover {
-    background: rgba(15, 82, 186, 0.02);
+    background: rgba(59, 130, 246, 0.05);
     transform: translateX(2px);
+  }
+
+  table th,
+  table td {
+    color: var(--text-secondary);
   }
 
   @keyframes fadeInUp {
@@ -253,12 +271,16 @@
         prevIcon.innerHTML = '<i class="fas fa-check"></i>';
         prevIcon.style.background = 'var(--success)';
         prevIcon.style.color = 'white';
+        prevIcon.style.borderColor = 'var(--success)';
+        prevIcon.style.boxShadow = '0 0 20px rgba(16, 185, 129, 0.4)';
         
         // Start current step
         const currentIcon = steps[currentStep].querySelector('.step-icon');
         currentIcon.innerHTML = '<i class="fas fa-spinner fa-spin"></i>';
         currentIcon.style.background = 'var(--primary)';
         currentIcon.style.color = 'white';
+        currentIcon.style.borderColor = 'var(--primary)';
+        currentIcon.style.boxShadow = 'var(--shadow-glow)';
         
         currentStep++;
       } else {
