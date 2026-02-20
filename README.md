@@ -1,4 +1,4 @@
-# 🔬 Synthetic Data Generator [Live Demo]([https://synthetic-data-generator-egv9.onrender.com/)]
+# 🔬 Synthetic Data Generator [Live Demo]([https://synthetic-data-generator-egv9.onrender.com/])
 
 A comprehensive, production-ready synthetic data generation system with schema analysis, multi-pipeline generation, quality validation, and privacy guarantees.
 
@@ -422,6 +422,6 @@ MIT License - see LICENSE file for details
 
 ---
 
-[railway.app]([https://synthetic-data-generator-egv9.onrender.com/)]
+[railway.app]([https://synthetic-data-generator-egv9.onrender.com/])
 
 **Made with ❤️ for privacy-preserving data science**
