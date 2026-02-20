@@ -1,4 +1,4 @@
-# 🔬 Synthetic Data Generator
+# 🔬 Synthetic Data Generator (https://synthetic-data-generator-sde.up.railway.app/)
 
 A comprehensive, production-ready synthetic data generation system with schema analysis, multi-pipeline generation, quality validation, and privacy guarantees.
 
