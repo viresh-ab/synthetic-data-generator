@@ -1,4 +1,4 @@
-# 🔬 Synthetic Data Generator ## 🚀 Live Demo
+# 🔬 Synthetic Data Generator ## 
 
 🔗 [Open the app](https://synthetic-data-generator-egv9.onrender.com/)
 
@@ -424,6 +424,6 @@ MIT License - see LICENSE file for details
 
 ---
 
-[railway.app]([https://synthetic-data-generator-egv9.onrender.com/])
+[railway.app](https://synthetic-data-generator-egv9.onrender.com/)
 
 **Made with ❤️ for privacy-preserving data science**
