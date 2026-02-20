@@ -1,4 +1,6 @@
-# 🔬 Synthetic Data Generator [Live Demo]([https://synthetic-data-generator-egv9.onrender.com/])
+# 🔬 Synthetic Data Generator ## 🚀 Live Demo
+
+🔗 [Open the app](https://synthetic-data-generator-egv9.onrender.com/)
 
 A comprehensive, production-ready synthetic data generation system with schema analysis, multi-pipeline generation, quality validation, and privacy guarantees.
 
